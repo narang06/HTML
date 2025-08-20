@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table1</title>
+    <style>
+        table,tr,td,th {
+            border: 2px solid black; /* 2px 크기 검은색 선으로*/
+            border-collapse: collapse; /*겹치는 선 하나로*/
+            text-align: center; /* 가운데 정렬 */
+            padding: 5px 20px; /*안쪽 여백(상하 5px, 좌우 10px)*/
+        }
+    </style>
+</head>
+<body>
+    <!-- table 태그는 행과 열로 이루어져야 함 -->
+    <!-- 전체를 table 태그로 감싸고 행은 tr, 열은 td(th)를 사용한다. -->
+     
+    <table>
+        <caption>테이블 제목</caption>
+        <tr>
+            <th>이름</th>
+            <th>자바</th>
+            <th>오라클</th>
+            <th>HTML</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>95</td>
+            <td>90</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>김철수</td>
+            <td>60</td>
+            <td>10</td>
+            <td>55</td>
+        </tr>
+    </table>
+</body>
+</html>
