@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foam</title>
+    <style>
+        .title {
+            width: 400px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px auto;
+        }
+        .foam{
+            width: 400px;
+            height: 450px;
+            border: 1px solid gray;    
+            padding: 10px;
+            margin: 10px auto;     
+        }
+        .red {
+            color: red;
+            margin: 10px;
+            font-size: small;
+        }
+        .box{
+            text-align: center;
+        }
+        .intro{
+            text-align: center;
+            margin-left: 1px;
+            margin-top: 10px;
+        }
+        .red2 {
+            margin: 10px;
+            color: red;
+            font-weight: bold;
+        }
+        .nomal {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">지원 양식</div>
+        <div class="foam">
+            <div class="red">*빨간색은 필수 입력입니다.</div>
+            <div class="red2">
+                <label>이름:<input type="text"></label>
+            </div>
+            <div class="nomal">
+                <label>학과:<input type="text"></label>
+            </div>
+            <div class="red2">
+                <label>연락처:<input type="search"></label>
+            </div>
+            <div class="nomal">
+                <span class="red2">성별:</span>
+                <label><input type="radio" name="gender">남자</label>
+                <label><input type="radio" name="gender">여자</label>  
+            </div>
+            <div>           
+                관심언어:
+                <label><input type="checkbox">자바</label>
+                <label><input type="checkbox">파이썬</label>
+                <label><input type="checkbox">C</label>
+                <label><input type="checkbox">C#</label>
+                <label><input type="checkbox">기타 언어</label>          
+            </div>
+            <div class="intro">
+                <textarea rows="13" cols="53" placeholder="자기소개"></textarea>
+            </div>
+            <div class="box">
+                <input type="button" value="가입하기">
+                <input type="button" value="취소">
+            </div>
+        </div>
+        
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postion</title>
+    <style>
+        div{
+            color: white;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 100px;
+            box-sizing: border-box; /*border등을 포함해서 전체 크기 width,height에 맞게 조정*/
+        }
+        .box1 {
+            background-color: red;
+        }
+        .box2 {
+            background-color: blue;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+        }
+        .box3 {
+            background-color: green;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- position의 absolute는 부모요소의 영향을 받아 배치 -->
+    <!-- 부모(상위) 요소중에서 static이 아닌 요소를 기준으로 배치-->
+    <!-- 부모(상위) 요소가 모두 static이면 body기준으로 배치 -->
+    <!-- 보통 relative와 조합하여 사용 -->
+    <div class="box1">box1</div>
+  
+    <div class="box2">box2</div>
+    <br><br><br>
+    
+    <div style="width: 600px; height: 300px; position: relative;">
+        <div class="box3">box3</div>
+     </div>
+
+</body>
+</html>
