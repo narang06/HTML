@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script4</title>
+</head>
+<body>
+    <div>
+        <label>첫번째 숫자 :<input type="text" id="num1"></label>
+    </div>
+    <div>
+        <label>두번째 숫자 :<input type="text" id="num2"></label>
+    </div>
+    <div>
+        <button onclick="fnSum()">더하기</button>
+        <button onclick="fnCompare()">비교하기</button>
+    </div>
+</body>
+</html>
+<script>
+    function fnSum(){
+        // let obj1 = document.querySelector("#num1");
+        // console.log(obj1.value);
+        let num1 = document.querySelector("#num1").value;
+        let num2 = document.querySelector("#num2").value;
+        // alert(num1+num2) // 문자열로 더하기가 되므로
+        // 숫자로 변환해서 더하기를 해야함
+        alert(parseInt(num1)+parseInt(num2)); // 정수로 변환해서 더하기    
+    }
+    function fnCompare(){
+        let num1 = document.querySelector("#num1").value;
+        let num2 = document.querySelector("#num2").value;
+        // 값을 비교할 때 '==','==='를 사용
+        // '=='는 값만 비교, '==='는 값과 타입을 비교
+        if(num1 == 10){
+            alert("같다");
+        } else {
+            alert("다르다");
+        }
+    }
+
+</script>

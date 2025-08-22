@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        div{
+            display: block; /* div의 default는 block */
+        }
+        span{
+            display: inline; /* div의 default는 inline */
+        }
+
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- inline => 내부의 크기만큼만 범위 차지 + 너비와 높이 지정 불가능 -->
+    <!-- block => 한라인을 다 차지 + 너비와 높이 지정 가능 -->
+    <div class="box">box1</div>
+    <div class="box" style="background-color:red;">box2</div>
+    <br>
+    <span class="box">box3</span> 
+    <span class="box">box4</span> 
+    <br><br>
+    <hr>
+    <!-- inline-block 속성은 block처럼 크기를 지정하면서 -->
+    <!-- inline처럼 나란히 배열하는게 가능한 속성 -->
+
+    <div class="box2">box5</div>
+    <div class="box2" style="background-color:red;">box6</div>
+
+</body>
+</html>

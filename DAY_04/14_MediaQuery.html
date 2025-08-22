@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaQuery</title>
+    <style>
+        body {
+            /* 기본값: 가장 큰 화면에 대한 배경 이미지 */
+            background: url(/Media/image_1.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+
+        @media screen and (max-width: 1024px) {
+            /* 화면 너비가 1024px 이하일 때 적용 */
+            body {
+                background: url(/Media/cat.jpg) no-repeat fixed;
+                background-size: cover;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            /* 화면 너비가 768px 이하일 때 적용 */
+            body {
+                background: url(/Media/car.webp) no-repeat fixed;
+                background-size: cover;
+            }
+        }
+        @media screen and (max-width: 492px) {
+            body {
+                background: url(/Media/phpZdUMQY.png) no-repeat fixed;
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script6</title>
+</head>
+<body>
+    <h1 style="color: red;" onclick="fnColor()" id="txt">HTML/CSS 재밌다.</h1>
+</body>
+</html>
+<script>
+    function fnColor(){
+        let obj = document.querySelector("#txt");
+        console.log(obj.style.color);
+        if(obj.style.color == "red"){
+            obj.style.color = "blue";
+            obj.style.fontSize = "1px";
+        } else {
+            obj.style.color = "red"; 
+        }
+        // obj.innerHTML = "zzzzzzz";
+    }
+        
+</script>

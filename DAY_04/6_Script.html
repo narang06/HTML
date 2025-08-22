@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script2</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    // 자바스크립트의 함수(메소드)
+    // js 함수는 리턴 타입 자체가 없다.
+    // js 함수는 파라미터 타입을 선언할 필요가 없다.
+    // js 함수는 return 키워드를 사용하지 않아도 된다.
+
+    function sum1(x,y){
+        console.log(x + y);
+        // h3 태그를 적용하고
+        // x가 1, y가 2라고 가정할때
+        // '1+2 의 덧셈 결과는 3입니다.' 라고 출력
+        document.write("합계는 " + (x + y)); 
+        // document.write("<h3>1 + 2 의 덧셈 결과는 " + (x + y) + "입니다.</h3>");
+        // 위에 내용을 백틱(`)을 사용해서 쉽게 작성 가능
+        // 변수를 문자열 내에서 바로 호출가능 -> ${}
+        document.write(`<h3>${x} + ${y} 의 덧셈 결과는 ${x + y}입니다.</h3>`);
+    }
+    function sum2(x,y){
+        return x + y; 
+    }
+    sum1(1,2);
+    let num = sum2(3,4);
+    document.write("리턴된 값 --> " + num);
+
+</script>

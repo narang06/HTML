@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+    <style>
+        li:first-child{ /*부모가 있는 li 태그중 첫번째만 적용*/
+            color: red;
+        }
+        li:nth-child(2){ /*부모가 있는 li 태그중 두번째만 적용*/
+            color: blue;
+        }
+        li:nth-child(2n){ /*부모가 있는 li 태그중 짝수번째만 적용 (2n or odd)*/
+            background-color: lightcoral;
+        }
+        li:nth-child(odd){ /*부모가 있는 li 태그중 홀수번째만 적용 (2n+1 or even)*/
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <ol>
+        <li>자바</li>
+        <li>오라클</li>
+        <li>HTML</li>
+        <li>Javascript</li>
+        <li>JQuery</li>
+    </ol>
+    <ul>
+        <li>git</li>
+        <li>UML</li>
+        <li>Figma</li>
+    </ul>
+</body>
+</html>

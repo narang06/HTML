@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script7</title>
+</head>
+<body>
+    <div>
+        <button onclick="fnText()">클릭</button>
+    </div>
+    <div id="txt"></div>
+</body>
+</html>
+<script>
+    function fnText(){
+       // document.write("안녕하세요."); // 화면에 새롭게 작성, 버튼이 사라짐
+        let obj = document.querySelector("#txt");
+        // obj.style.color = "blue";
+        obj.innerHTML = "<h2 style = 'color:blue;'>안녕하세요.</h2>"; 
+        //obj.innerText ="<h2>안녕하세요</h2>";
+    }
+</script>

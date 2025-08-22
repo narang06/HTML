@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        .sub-menu{
+            background-color:  papayawhip;
+            width: 150px;
+            box-shadow: 2px 2px 2px papayawhip;
+            display: none;
+            
+        }
+        .sub-menu a {
+            display: block;
+            padding: 10px;
+            cursor: pointer; /*손모양*/
+
+        }
+        .sub-menu a:hover {
+            background-color: hotpink;
+        }
+        .main-menu {
+            background-color: chartreuse;
+            width: 150px;
+            padding: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .top-menu:hover .sub-menu{
+            display: block;
+        }
+        .top-menu {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-menu">
+        <div class="main-menu">Dropdown</div>
+        <div class="sub-menu">
+            <a>Menu 1</a>
+            <a>Menu 2</a>
+            <a>Menu 3</a>
+        </div>
+    </div>
+</html>

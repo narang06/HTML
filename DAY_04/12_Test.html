@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div style="font-size: ; color: ;">
+        <label">텍스트 입력: <input type="text" id="text"></label>
+    </div>
+    <div>
+        <label">사이즈 입력: <input type="text" id="size"></label>
+    </div>
+    <div>
+        <label">색상 입력: <input type="text" id="color"></label>
+    </div>
+    <div>
+        <button onclick="fnInput()">생성</button>
+    </div>
+    <div id="output">output</div>
+</body>
+</html>
+<script>
+    function fnInput(){
+        let text = document.querySelector("#text").value;
+        let size = document.querySelector("#size").value;
+        let color = document.querySelector("#color").value;
+
+        let output = document.querySelector("#output");
+        output.style.color = color;
+        output.style.fontSize = size + "px";
+        output.innerHTML = text;
+        
+        
+    }
+</script>
