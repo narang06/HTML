@@ -8,17 +8,15 @@
 </head>
 <body>
     <header class="profile-header">
-        <img src="https://via.placeholder.com/150" alt="프로필 이미지" class="profile-img">
+        <img src="/Media/cat.jpg" alt="프로필 이미지" class="profile-img">
         <h1>이민형</h1>
-        <p>~~~~~</p>
+        현재 시간<p id="currentTime" class="currentTime"></p>
     </header>
     
     <main class="main-content">
         <section class="about-me">
             <h2>자기소개</h2>
-            <p>
-                ~~~~~~~~~
-            </p>
+            <p>안녕하세요, 이민형입니다. 웹 개발에 관심이 많으며 HTML, CSS, JavaScript를 활용한 다양한 프로젝트를 경험했습니다.</p>
         </section>
 
         <section class="skills">
@@ -45,3 +43,11 @@
     </footer>
 </body>
 </html>
+<script>
+    setInterval(() => {
+        let datetime = new Date(); 
+        let obj = document.querySelector('#currentTime');
+        let time = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+        obj.innerHTML = time;
+    }, 1000);
+</script>

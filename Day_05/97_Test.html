@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 800px;
+            margin : 20px auto;
+        }
+        #contents{
+            width: 400px;
+            margin : 10px auto;
+            border: 2px solid gainsboro;
+            box-shadow: 1px 1px 1px gainsboro;
+        }
+        div{
+            margin : 20px;
+        }
+        .accent{
+            color : red;
+            font-weight: bold;
+        }
+        .small-txt{
+            font-size: small;
+            color : red;
+        }
+        .center{
+            text-align: center;
+        }
+        .phone-txt{
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 class="center">지원 양식</h2>
+        
+        
+        <div id="contents">
+            <div class="small-txt">* 빨간색은 필수 입력입니다.</div>
+            <div class="accent"><label>이 름 : <input id="name" type="text" placeholder="이름을 입력해주세요."></label></div>
+            <div class="accent"><label>비밀번호 : <input id="pwd1" type="password" placeholder="비밀번호를 입력해주세요."></label></div>
+            <div class="accent"><label>비밀번호 확인 : <input id="pwd2" type="password" placeholder="비밀번호를 다시 입력해주세요."></label></div>
+            <div id="dept"><label>학 과 : <input type="text" placeholder="학과를 입력해주세요"></label></div>
+            <div id="accent"><label><span class="accent">연락처 : </span>
+                <select>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                </select>
+                -
+                <input id="phone2" type="text" class="phone-txt">
+                -
+                <input id="phone3" type="text" class="phone-txt">
+            </div>
+            <div><span class="accent">성별 : </span>
+                <label><input type="radio" name="gender" value="M">남자</label>
+                <label><input type="radio" name="gender" value="F">여자</label>
+            </div>
+            <div>관심언어 : 
+                <label><input type="checkbox">자바</label>
+                <label><input type="checkbox">파이썬</label>
+                <label><input type="checkbox">C</label>
+                <label><input type="checkbox">C#</label>
+                <label><input type="checkbox">기타 언어</label>
+            </div> 
+            <div>
+                <textarea rows="10" cols="50" placeholder="자기소개"></textarea>
+            </div>  
+            <div class="center">
+                <button onclick="fnJoin()">가입하기</button>
+                <button>취소</button>
+            </div> 
+        </div>
+       
+    </div>
+    
+</body>
+</html>
+<script>
+    function fnJoin(){
+        // 빨간색(필수 값)이 비어 있는지 확인
+        // 비밀번호, 비밀번호 확인이 같은지
+        // 최종적으로 모두 문제 없으면 '가입 되었습니다.' 출력
+
+        // 이름에 숫자나 특수문자, 공백등이 있으면 허용하면 안됨.
+        // 해당 부분은 '정규식'을 학습 후 적용
+
+        let name = document.querySelector('#name'); 
+        let pwd1 = document.querySelector('#pwd1'); 
+        let pwd2 = document.querySelector('#pwd2'); 
+        let phone2 = document.querySelector('#phone2'); 
+        let phone3 = document.querySelector('#phone3');
+        if(name.value == ""){
+            alert('이름을 입력해주세요.');
+            name.focus();
+            retutn;
+        } else if(pwd1.value == ""){
+            alert('비밀번호를 입력해주세요.');
+            pwd1.focus();
+            retutn;
+        } else if(pwd1.value != pwd2.value){
+            alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+            pwd2.focus();
+            retutn;
+        }
+        if(phone2.value == "" || phone3.value == ""){
+            alert('연락처를 입력해주세요.');
+            phone2.focus();
+            return;
+        }
+        let gender = document.querySelector("input[name=gender]:checked");
+        if(gender == null || gender == undefined) {
+            alert('성별을 선택해주세요.');
+            return;
+        }
+        alert('가입 되었습니다.');
+     }
+</script>

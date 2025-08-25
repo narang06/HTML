@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+    <style>
+        #txt {
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="txt"></div>
+</body>
+</html>
+<script>
+    let title ="안녕하세요! 프로그래밍 재밌습니다!";
+    let text = document.querySelector('#txt');
+    let i = 0;
+    let id = setInterval(() => {
+        let word = title.charAt(i++);
+        text.innerHTML += word;
+        if (i>=title.length) {
+            clearInterval(id);
+        }    
+    },300);
+    // let title ="안녕하세요! 프로그래밍 재밌습니다!";
+    // let text = document.querySelector('#txt');
+    // let i = 0;
+    // let id = setInterval(() => {
+    //     let word = title.charAt(i++);
+    //     text.innerHTML += word;
+    //     if (i>=title.length) {
+    //         text.innerHTML = "";
+    //         i = 0;
+    //     }    
+    // },300); // 무한반복
+        
+</script>
