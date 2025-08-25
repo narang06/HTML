@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex4</title>
+    <style>
+        #container {
+            /* width: 800px; */
+            background-color: #ccc;
+            border: 1px solid black;
+            display: flex; 
+        }
+        .box {
+            width: 100px;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: mediumseagreen;
+            text-align: center;
+            color: white;
+        }
+        .order1{
+            justify-content: flex-start; /* 왼쪽 정렬 */
+        }            
+        .order2{
+            justify-content: flex-end; /* 오른쪽 정렬 */
+        }            
+        .order3{
+            justify-content: center; /* 가운데 정렬(간격 x) */
+        }            
+        .order4{
+            justify-content: space-between; /* 양쪽 정렬(양쪽 끝에 배치후 같은 간격으로 배치) */
+        }            
+        .order5{
+            justify-content: space-around; /* 양 끝 약간의 여유를 두고 양쪽 정렬 */
+        }            
+        .order6{
+            justify-content: space-evenly; /* 모든 여백이 동일한 양쪽 정렬(모든 요소를 같은 간격으로 배치) */
+        }            
+    </style>
+</head>
+<body>
+    <div id="container" class="order1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order3">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order4">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order5">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order6">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+</body>
+</html>

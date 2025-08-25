@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex3</title>
+    <style>
+        #container {
+            /* width: 800px; */
+            background-color: #ccc;
+            border: 1px solid black;
+            display: flex; 
+        }
+        .box {
+            width: 100px;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: mediumseagreen;
+            text-align: center;
+            color: white;
+        }
+        .flow1{
+            flex-flow: row wrap; /* 방향과 줄바꿈을 한번에 정의*/
+        }
+        .flow2{
+            flex-flow: row nowrap; /* 방향과 줄바꿈을 한번에 정의*/
+        }
+            
+    </style>
+</head>
+<body>
+    <div id="container" class="flow1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+    <div id="container" class="flow2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+</html>

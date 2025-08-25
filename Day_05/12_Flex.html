@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex2</title>
+    <style>
+        #container {
+            /* width: 800px; */
+            background-color: #ccc;
+            border: 1px solid black;
+            display: flex;
+            
+            /* justify-content: row; */
+        }
+        .box {
+            width: 100px;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: mediumseagreen;
+            text-align: center;
+            color: white;
+        }
+        .wrap1 {
+            flex-wrap: nowrap; /* 기본값, 한 줄로 표시 */
+        }
+        .wrap2 {
+            flex-wrap: wrap; /* 여러 줄로 표시 */
+        }
+        .wrap3 {
+            flex-wrap: wrap-reverse; /* 여러 줄로 표시, 역순 */
+        }.
+    </style>
+</head>
+<body>
+    <div id="container" class="wrap1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+    <div id="container" class="wrap2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+    <div id="container" class="wrap3">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+</html>

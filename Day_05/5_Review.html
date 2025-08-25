@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review5</title>
+</head>
+<body>
+    <div style="color: green;" id="txt">HTML/CSS</div>
+    <button onclick="fnChange()">클릭</button>
+</body>
+</html>
+<script>
+    function fnChange(){
+        // id가 txt인 요소를 찾아서
+        // 그 요소의 글씨를 파란색, 20px, bold
+        // 내용을 '자바스크립트'로 변경
+        let obj = document.querySelector("#txt");
+        obj.style.color = "blue";
+        obj.style.fontSize = "20px";
+        obj.style.fontWeight = "bold";
+        obj.innerHTML = "자바스크립트";
+    }
+</script>

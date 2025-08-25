@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1ObjectFit</title>
+    <style>
+        .container{
+            width: 200px;
+            height: 400px;
+            border: 2px solid black;
+            margin: 2px;
+        }   
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .fill{
+            object-fit: fill; /* 기본값, 이미지의 비율 무시, 꽉 채우게 표시 */
+        }
+        .contain {
+            object-fit: contain; /* 이미지의 비율 유지, 영역 안에 맞게 표시 */
+        }
+        .cover {
+            object-fit: cover; /* 이미지의 비율 유지, 영역을 꽉 채우게 표시 */
+        }
+        .none {
+            object-fit: none; /* 이미지의 비율 유지, 원본 크기로 표시 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/Media/car.webp" alt="차" class="fill"> 
+    </div>
+    <div class="container">
+        <img src="/Media/car.webp" alt="차" class="contain">
+    </div>
+    <div class="container">
+        <img src="/Media/car.webp" alt="차" class="cover">
+    </div>
+    <div class="container">
+        <img src="/Media/car.webp" alt="차" class="none">
+    </div>
+</body>
+</html>

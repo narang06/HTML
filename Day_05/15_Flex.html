@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex5</title>
+    <style>
+        #container {
+            height: 200px;
+            background-color: #ccc;
+            border: 1px solid black;
+            display: flex; 
+            justify-content: flex-start;
+        }
+        .box {
+            width: 100px;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: mediumseagreen;
+            text-align: center;
+            color: white;
+        }
+        .order1{
+            align-items: flex-start; /* 라인 상단 정렬 */
+        }                      
+        .order2{
+            align-items: flex-end; /* 라인 하단 정렬 */
+        }                      
+        .order3{
+            align-items: center; /* 라인 가운데 정렬 */
+        }                      
+        .order4{
+            align-items: baseline; /* 라인 기준선 정렬 */
+        }                      
+    </style>
+</head>
+<body>
+    <div id="container" class="order1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order3">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <div id="container" class="order4">
+        <div class="box">1</div>
+        <div class="box" style="font-size: 30px;">2</div>
+        <div class="box" style="font-size: 20px;">3</div>
+        <div class="box" style="font-size: 50px;">4</div>
+    </div>
+</body>
+</html>
