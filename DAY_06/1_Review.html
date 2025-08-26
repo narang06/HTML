@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+</head>
+<body>
+    <div><span class="accent">성별 : </span>
+            <label><input type="radio" name="gender" value="M" checked>남자</label>
+            <label><input type="radio" name="gender" value="F">여자</label>
+    </div>
+    <div>
+        <button onclick="fnGender()">성별확인</button>
+    </div>
+
+</body>
+</html>
+<script>
+    function fnGender() {
+        // 체크한 값이 M이면 '남자입니다.' F이면 '여자입니다.' 출력
+        let gender = document.querySelector("input[name=gender]:checked");
+
+        if(gender.value == 'M') {
+            console.log("남자 입니다.");
+        } else if(gender.value == 'F') {
+            console.log("여자 입니다.");
+        } else {
+            console.log("잘못 선택하였습니다.");
+        }
+    }
+</script>

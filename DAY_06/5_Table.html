@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        table,tr,td,th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+
+    </div>
+    <div>
+        <button onclick="fnTable()">테이블 생성</button>
+    </div>
+</body>
+</html>
+<script>
+    function fnTable() {
+        let table = document.createElement("table"); //<table> </table> 생성
+        for(j=0; j<3; j++) {
+            let row = document.createElement("tr"); //<tr> </tr> 생성
+            for(let i=1; i<=5; i++) {
+                let column = document.createElement("td"); //<td> </td> 생성
+                column.innerHTML = i; // <td>i</td>
+                row.appendChild(column); // <tr> <td>i</td> </tr>
+            }     
+            table.appendChild(row); 
+        } 
+         // for문이 끝나면 
+        // <tr> 
+        // <td>1</td> 
+        // <td>2</td> 
+        // <td>3</td> 
+        // <td>4</td> 
+        // <td>5</td> 
+        // </tr>
+        // <table> 
+        // <tr> 
+        // <td>1</td> 
+        // <td>2</td> 
+        // <td>3</td> 
+        // <td>4</td> 
+        // <td>5</td> 
+        // </tr> 
+        // </table>
+        let content = document.querySelector("#content");
+        content.appendChild(table); // #content의 마지막 자식으로 테이블 추가
+    }
+        
+</script>

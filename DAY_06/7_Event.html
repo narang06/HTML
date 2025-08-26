@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <img src="/Media/image_2.jpg" width="500" height="500" id="image">
+</body>
+</html>
+<script>
+    let img = document.querySelector("#image");
+    img.addEventListener("mouseover",() => {
+        img.src = "../Media/image_1.jpg";
+    });
+    img.addEventListener("mouseout",() => {
+        img.src = "../Media/image_2.jpg";
+    });
+
+    //mouseover, mouseout
+    //click => 클릭
+    //dbclick => 더블클릭
+    //mousedown 마우스 누르고 있을 때
+    //mouseup 마우스 땠을 때
+    //mousemove 마우스 움직일 때    
+</script>

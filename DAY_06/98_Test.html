@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+</head>
+<body>
+    <div>
+        <label><input type="checkbox" name="subject" value="java">자바</label>
+    </div>
+    <div> 
+        <label><input type="checkbox" name="subject" value="oracle">오라클</label>    
+    </div>
+    <div>
+        <label><input type="checkbox" name="subject" value="html">html/css/javascript</label>
+    </div>
+    <div>
+        <label><input type="checkbox" name="subject" value="jquery">jQuery</label>
+    </div>
+    <button onclick="subjectCheck()">클릭</button>
+    <div id="imagelist"></div> 
+</body>
+</html>
+<script>
+    function subjectCheck() {
+    let subjectList = document.querySelectorAll('input[name=subject]:checked');
+    let imgList = document.querySelector('#imagelist');
+    imgList.innerHTML = ""; // 이전에 선택된 이미지 초기화
+    for(let i=0; i<subjectList.length; i++) {
+        let img = document.createElement("img"); // img 태그 요소 생성
+        img.src = "../Media/" +   subjectList[i].value + ".jpg"; // 생성된 요소에 내용 추가
+        imgList.appendChild(img); // 생성된 요소를 부모요소의 마지막 자식으로 추가
+    }
+    }
+</script>

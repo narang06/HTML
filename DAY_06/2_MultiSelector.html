@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiSelector</title>
+    <style>
+        .box {
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box1"></div>
+    <span>dd</span>
+    <div class="box" id="box2"></div>
+    <p>das</p>
+    <div class="box" id="box3"></div>
+    <button onclick="fnChange()">색 변경</button>
+</body>
+</html>
+<script>  
+    function fnChange() {
+        let objlist = document.querySelectorAll(".box"); // querySelectorAll : 여러개 선택
+        let r = Math.floor(Math.random()*256); // 0~255사이의 랜덤한 정수 Math.floor : 내림, Math.random() : 0~1사이의 랜덤한 실수
+        let g = Math.floor(Math.random()*256); 
+        let b = Math.floor(Math.random()*256);  
+        for (let i = 0; i < objlist.length; i++) { // for문으로 여러개 선택된 요소를 하나씩 접근
+            objlist[i].style.backgroundColor = `rgb(${r},${g},${b})`;           
+        }
+    }
+</script>

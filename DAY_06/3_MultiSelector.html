@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiSelector2</title>
+</head>
+<body>
+    <div>관심언어 : 
+                <label><input type="checkbox" name ="subject" value="java"> 자바</label>
+                <label><input type="checkbox" name ="subject" value="pyton"> 파이썬</label>
+                <label><input type="checkbox" name ="subject" value="c"> C</label>
+                <label><input type="checkbox" name ="subject" value="c#"> C#</label>
+                <label><input type="checkbox" name ="subject" value="etc"> 기타 언어</label>
+    </div>
+    <div>
+        <button onclick="fnCheckbox()">선택한 과목 확인</button>
+    </div> 
+</body>
+</html>
+<script>
+    function fnCheckbox() {
+        let subjectList = document.querySelectorAll("input[name=subject]:checked");
+        for(let i = 0; i<subjectList.length; i++) {
+            console.log(subjectList[i].value);
+        }
+    }
+</script>

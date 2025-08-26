@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test1</title>
+</head>
+<body>
+    <div>
+        <label><input type="radio" name="subject" value="java" onclick="classcheck()">자바</label>
+    </div>
+    <div> 
+        <label><input type="radio" name="subject" value="oracle" onclick="classcheck()">오라클</label>    
+    </div>
+    <div>
+        <label><input type="radio" name="subject" value="html" onclick="classcheck()">html/css/javascript</label>
+    </div>
+    <div>
+        <label><input type="radio" name="subject" value="jquery" onclick="classcheck()">jQuery</label>
+    </div>
+    <img src="" width="300px" height="300px" style="display: none;" id="image">
+</body>
+</html>
+<script>
+    function classcheck() {
+    let subject = document.querySelector('input[name=subject]:checked').value;
+    let img = document.querySelector('#image');
+    img.src = "../Media/" +subject + ".jpg";
+    // if(class1 == "J") {
+    //     img.src = "../media/java.jpg";
+    // } else if (class1 == "O") {
+    //     img.src = "../media/oracle.jpg";
+    // } else if (class1 == "H") {
+    //     img.src = "../media/html.jpg";
+    // } else if (class1 == "JQ") {
+    //     img.src = "../media/jquery.jpg";
+    // } else {
+    //     console.log("잘못입력하셨습니다.");
+    // }
+    img.style.display = 'inline';
+    }
+</script>
