@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 600px;
+            margin: 10px auto;
+        }
+        #prod-img, #desc {
+            float: left;
+        }
+        #desc {
+            width: 300px;
+            margin-top: 5px;
+            margin-left: 10px;
+            font-size: small;
+        }
+        #desc ul {
+            list-style: none;
+        }
+        #desc li {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .small {
+            width: 60px;
+            height: 60px;
+            margin: 3px;
+        }
+        #prod-img {
+           margin: 10px 5px;
+        }
+        #small-img .small:hover {
+            cursor: pointer;
+        }
+        .blue-txt {
+            font-weight: bold;
+            color: blue;
+        }
+        #desc button {
+            margin: 20px 0px;
+            width: 100%;
+            padding: 10px;
+        }
+        #desc a {
+            text-decoration: none;
+        }
+        .gray-txt {
+            color: gray;
+        }
+        #detail {
+            padding-top: 30px;
+            clear: both;
+            display: none;
+            
+        }
+        #detail li {
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>자바프로그래밍 책</h1>
+        <div id="prod-img">
+            <img src="/Media/java.jpg" alt="자바1" width="200" height="200" id="mainImg">
+            <div id="small-img">
+                <img src="/Media/java2.jpg" alt="자바2" class="small">
+                <img src="/Media/java3.jpg" alt="자바3" class="small">
+                <img src="/Media/java4.jpg" alt="자바4" class="small">
+            </div>
+        </div>
+        <div id="desc">
+            <ul>
+                <li>상품명: 자바 책</li>
+                <li class="blue-txt">판매가: 199,000원</li>
+                <li>배송비: 30,000원</li>
+                <li>(50,000,000원 이상 구매시 무료)</li>
+                <li>적립금: 199원(0.1%)</li>
+                <li>발매일: 2023.12.30</li> 
+                <button>장바구니 담기</button>   
+                <a href="javascript:;" onclick="fnShow()">상세 설명 보기</a>
+            </ul>
+        </div>
+        <div id="detail">
+                <h3 class="gray-txt">상품 상세 정보</h3>
+                <ul>
+                    <li>출판사: 좋은출판사</li>
+                    <li>저자 : 홍길동</li>
+                    <li>언어 : 한국어/영어</li>
+                    <li>판매처 :<a href="javascript:;">클릭</a></li>
+                </ul>
+                <h4>정보</h4>
+                <p>~~~</p>
+                <h4>제공</h4>
+                <p>~~~</p>
+            </div>
+    </div>
+</body>
+</html>
+<script>
+    function fnShow() {
+        let detail = document.querySelector("#detail");
+        if(detail.style.display == 'block') {
+            detail.style.display = 'none';
+        } else {
+            detail.style.display = 'block';
+        }        
+    }
+    let mainImg = document.querySelector("#mainImg")
+    let subImg = document.querySelectorAll(".small")
+    for(let i =0; i<subImg.length; i++) {
+        subImg[i].onclick = function() {
+            let temp = mainImg.src;
+            mainImg.src = this.src;
+            this.src = temp;       
+        }
+    }
+
+</script>

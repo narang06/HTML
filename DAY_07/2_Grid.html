@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid2</title>
+    <style>
+        #container {
+            width: 700px;
+            display: grid;
+            /* grid-template-columns: 1fr 1fr 1fr; */
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: minmax(100px,auto); 
+         }
+        .box:nth-child(odd) {
+            border: 1px solid black;
+            padding: 5px 10px;
+            font-size: 20;
+            text-align: center;
+            background-color: thistle;
+            
+        }
+        .box {
+            border: 1px solid black;
+            padding: 5px 10px;
+            font-size: 20;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam vero illo sunt neque. Quasi cupiditate deleniti repellat vitae perferendis nisi dolorum aspernatur corporis autem molestiae? Beatae similique nihil eius deleniti?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem corporis sapiente harum. Praesentium nam repellendus voluptates accusamus maxime doloremque esse delectus minima placeat! Eveniet voluptates id architecto unde, at rem.
+        </div>
+        <div class="box">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea possimus rem maiores beatae, unde nihil provident itaque dolore vel. At culpa maxime quis aut doloremque ad accusantium nihil ullam eius!
+        </div>
+        <div class="box">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam aspernatur, in deleniti quos placeat assumenda ea omnis, perspiciatis iste impedit quam iure ducimus magni ipsum. Ab dignissimos nostrum obcaecati dolore.
+        </div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+
+    
+</body>
+</html>

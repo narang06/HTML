@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid5</title>
+    <style>
+        #container {
+            width: 700px;
+            display: grid;
+            grid-template-columns: repeat(3,3fr);
+            grid-template-rows: repeat(3,100px);
+            text-align: center;
+         }
+        .box {
+            border: 1px solid black;
+            padding: 5px 10px;
+            font-size: 20;
+            text-align: center;
+            
+        }
+        .box1 {
+            background-color: burlywood;
+            grid-column: 1/4; 
+            grid-row-start: 1; /* gird-row 1/2 랑 동일 */
+        }
+        .box2 {
+            grid-row: 2/4;
+            grid-column-start: 1; /*grid-colum */
+            background-color: aquamarine;
+        }
+        .box3 {
+            background-color: springgreen;
+            grid-row: 2/3;
+            grid-column: 2/4;
+        }
+        .box4 {
+            background-color: slategray;
+        }
+        .box5 {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+        <div class="box5">5</div>
+    </div>
+
+    
+</body>
+</html>

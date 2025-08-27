@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+<body>
+    <div class="txt">자바</div>
+    <div class="txt">오라클</div>
+    <div class="txt">HTML</div>
+    <div class="txt">Flutter</div>
+    <div class="txt">Javascript</div>
+</body>
+</html>
+<script>
+    let list = document.querySelectorAll(".txt");
+    for(let i =0; i<list.length; i++) {
+        list[i].onclick = function(e) {
+            // alert(this.innerHTML);
+            alert(e.target.innerHTML);
+            this.style.color = 'blue';
+        }
+    }
+
+</script>
