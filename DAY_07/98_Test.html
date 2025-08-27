@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+</head>
+<style>
+    body {
+        background-color: rgb(221, 215, 215);
+        margin: 0;
+        padding: 0;
+    }
+    #headline { /* 상품 페이지 */
+        padding: 10px;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: steelblue;
+        /* box-sizing: border-box; */
+    }
+    #menu { /* 메뉴 */
+        background-color: dodgerblue;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        /* box-sizing: border-box; */
+    }
+    #menu a {
+        padding: 5px;
+    }
+    #menu a:hover {
+        cursor: pointer;
+    }
+    #container {
+        width: 700px;
+        height: 600px;
+        margin: 25px auto;
+        background-color: white;
+        border: 1px solid white;
+        box-shadow: 2px 2px 2px gray;
+    }
+    #prod-img { /*메인 이미지*/
+           margin: 10px;
+           margin-left: 40px;
+           margin-right: 10px;
+        }
+    #prod-img:hover {
+        cursor: pointer;
+    }
+    .small { /*보조 이미지*/
+            width: 140px;
+            height: 180px;
+            padding: 1px;
+        }
+     #prod-img, #desc {
+            float: left;
+        }
+    #desc {
+        width: 280px;
+        margin-top: 10px;
+        height: 585px;
+        background-color: white;
+        border: 1px solid gray;
+        box-shadow: -1px 1px 1px gray;
+        border-radius: 10px;
+    }
+    #desc h4 {
+        text-align: center;
+    }
+    #desc a,hr  {        
+            font-size: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    #button {
+        margin: 5px;  
+        text-align: center;   
+    }
+    .bucket {
+        margin: 20px 0px;
+        width: 100%;
+        padding: 10px;
+        background-color: green;    
+        color: white;    
+    }
+    .bucket:hover {
+        cursor: pointer;
+        background-color: greenyellow;
+    }
+    .number {
+        width: 50px;
+        height: 20px;
+    }
+    .up-Down {
+        width: 102px;
+        height: 30px;
+        background-color: green;
+        color: white;
+    }
+    .up-Down:hover {
+        cursor: pointer;
+        background-color: greenyellow;
+    }
+</style>
+<body>
+    <div id="headline">
+        <h3>상품 상세 페이지</h3>
+        <p>정말~~~~좋은 자바 프로그래밍 책을 만나보세요!</p>
+    </div>
+    <div id="menu">
+            <a>홈</a>
+            <a>카테고리</a>
+            <a>장바구니</a>
+            <a>주문하기</a>
+    </div>
+    <div id="container">
+        <div id="prod-img">
+            <img src="/Media/java.jpg" alt="자바1" width="300" height="400" id="mainImg">
+            <div id="small-img">
+                <img src="/Media/java2.jpg" alt="자바2" class="small">
+                <img src="/Media/java3.jpg" alt="자바3" class="small">
+            </div>
+        </div>
+        <div id="desc">
+            <h4>자바 프로그래밍 책</h4>
+            <a>상품명: 자바 프로그래밍 책</a>
+            <hr>
+            <a style="font-weight: bold;">판매가: 199,000원</a>
+            <hr>
+            <a>배송비: 30,000원</a>
+            <hr>
+            <a>(50,000,000원 이상 구매시 무료)</a>
+            <hr>
+            <a>적립금: 199원(0.1%)</a>
+            <hr>
+            <a>발매일: 2023.12.30</a> 
+            <div id="button">
+                <div>
+                <button class="bucket">장바구니 담기</button>
+                </div>
+                <button class="up-Down" onclick="fnAdd()">-</button>
+                <input type="text" class="number" placeholder="1" style="text-align: center;">
+                <button class="up-Down" onclick="fnSubtract()">+</button>
+                <div>
+                    <a href="javascript:;">상세 설명 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</body>
+</html>
+<script>
+    let mainImg = document.querySelector("#mainImg")
+    let subImg = document.querySelectorAll(".small")
+    for(let i =0; i<subImg.length; i++) {
+        subImg[i].onclick = function() {
+            let temp = mainImg.src;
+            mainImg.src = this.src;
+            this.src = temp;       
+        }
+    }
+    let stack = document.querySelector()
+    function fnAdd() {
+        
+    }
+    function fnSubtract() {
+
+    }
+</script>
