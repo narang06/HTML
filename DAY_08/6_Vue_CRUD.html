@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue_CRUD</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    table, tr, td, th {
+            border:  1px solid black;
+            padding: 5px 20px;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+    th {
+        background-color: bisque;
+    }
+    tr:nth-child(odd) {
+        background-color: burlywood;
+    }
+    #app h1 {
+        text-align: center;
+    }
+    
+</style>
+</head>
+<body>
+    <div id="app">
+        <h1>학생정보</h1>
+        <table>
+            <th>이름</th>
+            <th>나이</th>
+            <th>학과</th>
+            <th>학년</th>
+            <th>키</th>
+            <th>삭제</th>
+            <tr v-for="item in list">
+                <td>{{item.STU_NO}}</td>
+                <td>{{item.STU_NAME}}</td>
+                <td>{{item.STU_DEPT}}</td>
+                <td>{{item.STU_GRADE}}</td>
+                <td>{{item.STU_HEIGHT}}</td>
+                <td><button>삭제</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                list : [],
+                delete : ""
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+            fnStuList: function () {
+                let self = this;
+                // jQuery의 Ajax 함수를 사용하여 서버와 통신
+                $.ajax({
+                    url: "http://localhost:3009/list",
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        // Ajax 통신 성공 시 실행되는 콜백 함수
+                        console.log(data);
+                        self.list = data.list;
+                    }
+                });
+            }
+        }, // methods
+        mounted() {
+            // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
+            // 처음 시작할 때 실행되는 부분
+            let self = this;
+            self.fnStuList();
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>

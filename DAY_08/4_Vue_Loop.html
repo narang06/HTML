@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue_Loof</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    table, tr, td, th {
+            border:  1px solid black;
+            padding: 5px 20px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+</style>
+<body>
+    <div id="app">
+        <div>
+            <span v-for="item in num">{{item}}</span>
+        </div>
+        <div>
+            <span v-for="item in list">{{item}}</span>
+        </div>
+        <div>
+            <span v-for="(item, index) in listMap">{{index+1}}.{{item.name}}<br></span>
+        </div>
+        <hr>
+        <table>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+            <tr v-for="item in listMap">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.addr}}</td>
+            </tr>
+        </table>
+      
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                list : [1,2,3,4,5],
+                num : 20,
+                listMap : [
+                    {name: "홍길동", age: 30, addr: "인천"},
+                    {name: "김철수", age: 20, addr: "서울"},
+                    {name: "김옥자", age: 93, addr: "제주"}
+                ]
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+        
+        }, // methods
+        mounted() {
+            // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
+            // 처음 시작할 때 실행되는 부분
+            // alert("안녕하세요");
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>
