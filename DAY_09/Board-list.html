@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board-list</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    table, tr, td, th {
+            border:  1px solid black;
+            padding: 5px 20px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+    th {
+        background-color: bisque;
+    }
+    tr:nth-child(odd) {
+        background-color: burlywood;
+    }
+    #search {
+        margin: 10px 0;
+    }
+    #search select {
+        height: 30px;
+        width: 100px;
+        text-align: center;
+    }
+    #search input {
+        width: 200px;
+        margin-left: 5px;
+        height: 25px;
+    }
+    #search button {
+        margin-left: 5px;
+        height: 30px;
+    }
+</style>
+<body>
+    <div id="app">
+        <div id="search">
+            <select v-model="option">
+                <option value="all">::전체::</option>
+                <option value="title">::제목::</option>
+                <option value="user">::작성자::</option>
+            </select>
+            <input v-model="keyWord" @keyup.enter="fnBoardList" placeholder="검색어를 입력해주세요.">
+            <button @click="fnBoardList">검색</button>
+        </div>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
+            </tr>
+            <tr v-for="item in list" >
+                <td>{{item.BOARDNO}}</td>
+                <td>
+                    <a href="#" @click="fnView(item.BOARDNO)">
+                    {{item.TITLE}}
+                    </a>
+                </td>
+                <td>{{item.USERID}}</td>
+                <td>{{item.CNT}}</td>
+                <td>{{item.CTIME}}</td>
+            </tr>
+        </table>
+        <button @click="fnAdd">글쓰기</button>
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                list : [],
+                keyWord : "",
+                option : "all"
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+            fnBoardList: function () {
+                // jQuery의 Ajax 함수를 사용하여 서버와 통신
+                let self = this;
+                let param = {
+                    option : self.option,
+                    keyWord : self.keyWord
+                };
+                $.ajax({
+                    url: "http://localhost:3009/board/list",
+                    dataType: "json",
+                    type: "GET",
+                    data: param,
+                    success: function (data) {
+                        // Ajax 통신 성공 시 실행되는 콜백 함수
+                        console.log(data)
+                        self.list = data.list;
+                    }
+                    
+                });
+            },
+            fnView : function(boardNo){
+                
+                location.href = `board-view.html?boardNo=${boardNo}`;
+            },
+            fnAdd : function(){
+                location.href="Board-add.html"
+            }
+        }, // methods
+        mounted() {
+            // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
+            // 처음 시작할 때 실행되는 부분
+            let self = this;
+            self.fnBoardList();
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>

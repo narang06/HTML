@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board-view</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    #c span {
+        margin: 5px;
+    }
+    .text {
+        text-align: left;
+        width: 800px;
+        height: 400px;
+        margin: 10px;
+        
+    }
+    #app {
+        width: 800px;
+        margin: 20px auto;
+    }
+    #c button {
+        margin-top: 5px;
+        margin-right: 10px; 
+    }
+    #c button:hover {
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="app">
+        <h2>-게시글 상세정보-</h2>
+        <div v-if="post" id="c">
+            <span>/글 번호: {{post.BOARDNO}}/</span>
+            <span>/제목: {{post.TITLE}}/</span>
+            <sapn>/작성일: {{post.CTIME}}/</span>        
+            <span>/조회수: {{post.CNT}}/</span>
+            <span>/작성자: {{post.USERID}}/</span>
+            <hr>
+            <div class="text">내용: {{post.CONTENTS}}</div> 
+            <hr>
+            <div id="button">
+                <button @click="fnEdit">수정</button>
+                <!--삭제 후 리스트 페이지로-->
+                <!-- 삭제 주소는 /board/delete -->
+                <button @click="fnRemove()">삭제</button>
+                <button @click="fnList">목록으로</button>
+            </div>
+            <div style="margin-top: 5px;">댓글</div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                boardNo : "",
+                post : {}
+
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+            fnBoardInfo: function () {
+                let self = this;
+                // jQuery의 Ajax 함수를 사용하여 서버와 통신
+                $.ajax({
+                    url: "http://localhost:3009/board/view",
+                    dataType: "json",
+                    type: "GET",
+                    data: {boardNo : self.boardNo},
+                    success: function (data) {
+                        // Ajax 통신 성공 시 실행되는 콜백 함수
+                        console.log(data[0]);
+                        self.post = data[0];
+                    }
+                    
+                });
+            },
+            fnRemove : function(b){
+                let self = this;
+                if(!confirm("정말 삭제하실겁니까?")){
+                return;
+                }
+                $.ajax({
+                url: "http://localhost:3009/board/delete",
+                dataType: "json",
+                type: "GET",
+                data: {boardNo : self.boardNo}, 
+                success: function (data) {
+                // Ajax 통신 성공 시 실행되는 콜백 함수
+                    alert("삭제되었습니다.");
+                    self.fnList();             
+                }
+                });                
+            },
+            fnList : function(){
+                location.href="Board-list.html";
+   
+            },
+            fnEdit : function(){
+                location.href=`Board-edit.html?boardNo=${this.boardNo}`;
+            }
+
+        }, // methods
+        mounted() {
+            // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
+            // 처음 시작할 때 실행되는 부분
+            const queryParams = new URLSearchParams(window.location.search)
+            this.boardNo = queryParams.get('boardNo') || '';
+            this.fnBoardInfo();
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>
