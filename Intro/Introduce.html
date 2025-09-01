@@ -20,50 +20,103 @@
         <p class="currentTime">현재 시간:</p>
     </header>
     
-    <main class="main-content"> <!-- 메인 부분 -->
-        <section class="about-me"> 
-            <h2>자기소개</h2>
-            <p>안녕하세요, 이민형입니다. 웹 개발에 관심이 많으며 HTML, CSS, JavaScript를 활용한 다양한 프로젝트를 경험했습니다.</p>
-        </section>
-
-        <section class="skills"> 
-            <h2>보유 기술</h2>
-            <ul>
-                <li><strong>프로그래밍 언어:</strong> HTML, CSS, JavaScript</li>
-                <li><strong>프레임워크:</strong> </li>
-                <li><strong>데이터베이스:</strong>Oracle</li>
-            </ul>
-        </section>
-        <section class="contact">
-            <h2>연락처</h2>
-            <p>
-                이메일: <a href="mailto:sinso5281532@gmail.com">sinso5281532@gmail.com</a>
-                <br>
-                GitHub: <a href="https://github.com/narang06">github.com/narang06</a>
-            </p>
-        </section>
-    </main>
+    <div class="main-container">
+        <div class="contents-change">
+            <main class="main-content"> <!-- 메인 부분 -->
+                <section class="about-me"> 
+                    <h2>자기소개</h2>
+                    <p>안녕하세요, 이민형입니다. 웹 개발에 관심이 많으며 HTML, CSS, JavaScript를 활용한 다양한 프로젝트를 경험했습니다.</p>
+                </section>
+    
+                <section class="skills"> 
+                    <h2>보유 기술</h2>
+                    <ul>
+                        <li><strong>프로그래밍 언어:</strong> HTML, CSS, JavaScript</li>
+                        <li><strong>프레임워크:</strong> </li>
+                        <li><strong>데이터베이스:</strong>Oracle</li>
+                    </ul>
+                </section>
+                <section class="contact">
+                    <h2>연락처</h2>
+                    <p>
+                        이메일: <a href="mailto:sinso5281532@gmail.com">sinso5281532@gmail.com</a>
+                        <br>
+                        GitHub: <a href="https://github.com/narang06">github.com/narang06</a>
+                    </p>
+                </section>
+            </main>
+            <div class="draggable-handle"></div>
+            <aside class="side-content">
+                <h3>갤러리</h3>
+                <p>갤~러~리</p>
+            </aside>
+        </div>    
+    </div>
 
     <footer class="site-footer">
         <p>&copy; 2025 이민형. All rights reserved.</p>
     </footer>
     </body>
 </html>
-    <script>
-         // 현재 시간을 1초마다 업데이트하는 기능
-        setInterval(() => {
-            let datetime = new Date();
-            let time = datetime.getHours().toString().padStart(2, '0') + ':' + 
-                       datetime.getMinutes().toString().padStart(2, '0') + ':' + 
-                       datetime.getSeconds().toString().padStart(2, '0');
-            let obj = document.querySelector('.currentTime');
-            obj.innerHTML = '현재 시간: ' + time;
-        }, 1000);
-        function fnChange(clickedImg) {
-            let mainImg = document.querySelector("#main-profile-image");
-            let temp = mainImg.src;
-            mainImg.src = clickedImg.src;
-            clickedImg.src = temp;
-        }
+<script>
+    // 메인 이미지 교체 기능
+    function fnChange(clickedImg) { 
+        let mainImg = document.querySelector("#main-profile-image");
+        let temp = mainImg.src;
+        mainImg.src = clickedImg.src;
+        clickedImg.src = temp;
+    }
 
-    </script>
+    // 현재 시간 업데이트 기능
+    setInterval(() => {
+        let datetime = new Date();
+        let time = datetime.getHours().toString().padStart(2, '0') + ':' +
+        datetime.getMinutes().toString().padStart(2, '0') + ':' +
+        datetime.getSeconds().toString().padStart(2, '0');
+        let obj = document.querySelector('.currentTime');
+        obj.innerHTML = '현재 시간: ' + time;
+    }, 1000);
+
+    // 드래그하여 화면 전환 기능
+    const handle = document.querySelector('.draggable-handle');
+    const wrapper = document.querySelector('.contents-change');
+    const container = document.querySelector('.main-container');
+
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let distance = 0;
+    const transitionThreshold = 100; // 전환을 위한 드래그 거리 (px)
+
+    handle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        wrapper.style.transition = 'none'; // 드래그 중 애니메이션 끔
+        document.body.style.userSelect = 'none'; // 텍스트 선택 방지
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        currentX = e.clientX;
+        distance = startX - currentX;
+
+        // 드래그 거리에 따라 래퍼를 이동
+        wrapper.style.transform = `translateX(-${distance}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        wrapper.style.transition = 'transform 0.5s ease-in-out'; // 애니메이션 다시 켬
+
+        if (distance > transitionThreshold) {
+            // 충분히 드래그했으면 사이드 콘텐츠로 전환
+            wrapper.style.transform = `translateX(-50%)`;
+        } else {
+            // 드래그가 부족했으면 원래 위치로 되돌림
+            wrapper.style.transform = `translateX(0)`;
+        }
+        document.body.style.userSelect = ''; // 텍스트 선택 허용
+        distance = 0; // 거리 초기화
+    });
+</script>

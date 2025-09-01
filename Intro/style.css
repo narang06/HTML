@@ -6,7 +6,7 @@
     text-align: center;
     width: 100%;
 }
-/* 이미지 컨테이너 (호버 효과를 위해 추가) */
+
 .image-container {
     position: relative;
     display: inline-block;
@@ -20,7 +20,7 @@
     margin-bottom: 1em;
 }
 
-#main-profile-image:hover {
+#main-profile-image:hover { /*호버 했을태 이미지 조금 크게*/
     width: 200px;
     border-radius: 50%;
     border: 3px solid white;
@@ -28,14 +28,13 @@
 }
 
 .hover-image {
-    display: none; /* 평소에는 숨김 */
-    position: absolute; /* 메인 이미지를 기준으로 위치 */
-    top: 100%; /* 메인 이미지 아래에 배치 */
-    left: 50%; /* 중앙 정렬 */
-    transform: translateX(-50%); /* 정확한 중앙 정렬 */
-    margin-top: 10px; /* 메인 이미지와의 간격 */
+    display: none; /
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    margin-top: 10px; 
     flex-direction: row; /* 가로로 정렬 */
-    gap: 10px; /* 이미지 사이의 간격 */
+    gap: 10px; 
 }
 
 .image-container:hover .hover-image {
@@ -49,7 +48,7 @@
     border-radius: 50%;
     border: 2px solid #ccc;
     cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s; /* 부드러운 전환 효과 */
+    transition: transform 0.2s, border-color 0.2s; 
 }
 
 .sub-profile-img:hover {
@@ -58,7 +57,7 @@
     border-radius: 10px;
     border: 2px solid #ccc;
     cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s; /* 부드러운 전환 효과 */
+    transition: transform 0.2s, border-color 0.2s; 
 }
 
 /* 서브 이미지에 호버 시 효과 */
@@ -74,14 +73,48 @@
     margin-top: 0.5em;
 }
 
-/* 메인 콘텐츠 영역 스타일 */
-.main-content {
-    width: 80%;
-    max-width: 800px;
+.main-container {
+    width: 100%;
+    max-width: 1000px;
     margin: 2em auto;
     background-color: white;
+    box-shadow: 0 0 10px black;
+    position: relative;
+    overflow: hidden; /* 핵심! 넘치는 콘텐츠를 숨겨서 화면 전환 효과를 줌 */
+    height: 600px; 
+}
+
+/* 메인 콘텐츠와 사이드 콘텐츠를 담는 래퍼 */
+.contents-change {
+    display: flex; 
+    width: 200%; 
+    transition: transform 0.5s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+.main-content {
+    flex-shrink: 0;
+    width: 50%; /* 컨테이너 너비의 절반 */
     padding: 2em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.side-content {
+    flex-shrink: 0;
+    width: 50%; /* 컨테이너 너비의 절반 */
+    background-color: white;
+    padding: 2em;
+}
+
+.draggable-handle {
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    right: 50%; 
+    top: 0;
+    cursor: pointer; /* 마우스 커서를 변경하여 드래그 가능함을 표시 */
+    background-color: #34495e;
+    opacity: 0.2; 
+    transform: translateX(50%); 
 }
 
 /* 섹션 제목 스타일 */
@@ -90,6 +123,7 @@ section {
 }
 
 h2 {
+    width: 900px;
     border-bottom: 2px solid cyan;
     padding-bottom: 0.5em;
     margin-bottom: 1em;
@@ -106,6 +140,7 @@ h2 {
     margin-bottom: 0.5em;
     padding: 0.8em;
     border-radius: 5px;
+    width: 800px;
 }
 
 /* 푸터 스타일 */
