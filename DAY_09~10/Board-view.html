@@ -13,13 +13,13 @@
     }
     .text {
         text-align: left;
-        width: 800px;
+        width: 700px;
         height: 400px;
         margin: 10px;
         
     }
     #app {
-        width: 800px;
+        width: 700px;
         margin: 20px auto;
     }
     #c button {
@@ -29,6 +29,9 @@
     #c button:hover {
         cursor: pointer;
     }
+    #comment span {
+        padding-right: 10px;
+    }  
 </style>
 <body>
     <div id="app">
@@ -43,13 +46,20 @@
             <div class="text">내용: {{post.CONTENTS}}</div> 
             <hr>
             <div id="button">
-                <button @click="fnEdit">수정</button>
-                <!--삭제 후 리스트 페이지로-->
-                <!-- 삭제 주소는 /board/delete -->
-                <button @click="fnRemove()">삭제</button>
+                <template v-if="sessionId == post.USERID || status == 'A'">
+                    <button @click="fnEdit">수정</button>
+                    <button @click="fnRemove">삭제</button>
+                </template>
                 <button @click="fnList">목록으로</button>
             </div>
-            <div style="margin-top: 5px;">댓글</div>
+            <h3>댓글</h3>
+            <div id="comment">
+                <span>작성자: </span>
+                <span>/ 내용: </span>
+                <span>/ 좋아요: </span>
+                <span>/ 작성일: </span>
+                <button>수정</button>    
+                <button>삭제</button>    
         </div>
     </div>
 </body>
@@ -62,7 +72,9 @@
             return {
                 // 변수 - (key : value)
                 boardNo : "",
-                post : {}
+                post : {},
+                sessionId : "",
+                status : ""
 
             };
         },
@@ -113,10 +125,13 @@
         }, // methods
         mounted() {
             // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
-            // 처음 시작할 때 실행되는 부분
+            // 처음 시작할 때 실행되는 부분        
             const queryParams = new URLSearchParams(window.location.search)
             this.boardNo = queryParams.get('boardNo') || '';
             this.fnBoardInfo();
+            this.sessionId = sessionStorage.getItem("sessionId");
+            this.status = sessionStorage.getItem("sessionStatus");
+            
         }
     });
     // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트

@@ -8,12 +8,20 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <style>
+    #app {
+        width: 800px;
+        margin: 0 auto;
+    }
     table, tr, td, th {
             border:  1px solid black;
             padding: 5px 20px;
             text-align: center;
             border-collapse: collapse;
         }
+    table {
+        width: 800px;
+        margin: 0 auto;
+    }
     th {
         background-color: bisque;
     }
@@ -22,6 +30,7 @@
     }
     #search {
         margin: 10px 0;
+        text-align: center;
     }
     #search select {
         height: 30px;
@@ -37,10 +46,17 @@
         margin-left: 5px;
         height: 30px;
     }
+    #logout {
+        text-align: right;
+    }
 </style>
 <body>
     <div id="app">
         <div id="search">
+            <div id="logout">
+                <button>로그인</button>
+                <button @click ="fnLogout">로그아웃</button>
+            </div>
             <select v-model="option">
                 <option value="all">::전체::</option>
                 <option value="title">::제목::</option>
@@ -51,6 +67,7 @@
         </div>
         <table>
             <tr>
+                <th>선택</th>
                 <th>번호</th>
                 <th>제목</th>
                 <th>작성자</th>
@@ -58,18 +75,23 @@
                 <th>작성일</th>
             </tr>
             <tr v-for="item in list" >
+                <td><input type="radio" name="board" :value="item.BOARDNO"  v-model="selectItem"></td>
                 <td>{{item.BOARDNO}}</td>
                 <td>
                     <a href="#" @click="fnView(item.BOARDNO)">
                     {{item.TITLE}}
                     </a>
                 </td>
-                <td>{{item.USERID}}</td>
+                <td>
+                    <span v-if="status == 'A'"><a href="javascript:;" @click="fnUserInfo(item.USERID)">{{item.USERID}}</a></span>
+                    <span v-else>{{item.USERID}}</span>
+                </td>
                 <td>{{item.CNT}}</td>
                 <td>{{item.CTIME}}</td>
             </tr>
         </table>
         <button @click="fnAdd">글쓰기</button>
+        <button @click="fnRemove">삭제</button>
     </div>
 </body>
 </html>
@@ -82,7 +104,9 @@
                 // 변수 - (key : value)
                 list : [],
                 keyWord : "",
-                option : "all"
+                option : "all",
+                status : "",
+                selectItem : "" // 라디오버튼으로 선택한 input의 value 저장
             };
         },
         methods: {
@@ -109,18 +133,53 @@
                 });
             },
             fnView : function(boardNo){
-                
                 location.href = `board-view.html?boardNo=${boardNo}`;
             },
             fnAdd : function(){
-                location.href="Board-add.html"
-            }
+                let self = this;  
+                if(self.status == null) {
+                    alert("로그인을 해주세요.")
+                    location.href="login.html"            
+                } else {
+                    location.href="Board-add.html"
+                }
+            },
+            fnLogout : function() {
+                sessionStorage.removeItem("sessionId");
+                sessionStorage.removeItem("sessionStatus");
+                alert("로그아웃 되었습니다.");
+                location.href="login.html";
+            },
+            fnUserInfo : function(userId){
+                window.open(`user-info.html?userId=${userId}`,"user","width=300,height=300");
+            },
+            fnRemove: function(){
+                let self = this;
+                if(!confirm("정말 삭제하실겁니까?")){
+                    return;
+                }
+                $.ajax({
+                    url: "http://localhost:3009/board/delete",
+                    dataType: "json",
+                    type: "GET",
+                    data: {boardNo : self.selectItem}, 
+                    success: function (data) {
+                        alert("삭제되었습니다.");
+                        self.selectItem = "";
+                        self.fnBoardList(); 
+
+                    }
+                });
+            }      
         }, // methods
         mounted() {
             // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
             // 처음 시작할 때 실행되는 부분
+            let sId = sessionStorage.getItem("sessionId");
             let self = this;
+            self.status = sessionStorage.getItem("sessionStatus")
             self.fnBoardList();
+            console.log(sId);
         }
     });
     // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트

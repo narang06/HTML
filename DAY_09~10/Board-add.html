@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Board-edit</title>
+    <title>Board-add</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
@@ -39,7 +39,7 @@
     <div id="app">
         <div id="container">
             <table>
-                <h2>게시글 수정</h2>
+                <h2>게시글 작성</h2>
                 <tr>
                     <th>종류</th>
                     <td>
@@ -82,9 +82,8 @@
         data() {
             return {
                 // 변수 - (key : value)
-                boardNo : "",
                 title : "",
-                userId : "",
+                userId : "", // 세션 아이디
                 contents : "",
                 selectItem : 1
                
@@ -98,48 +97,28 @@
                     title : self.title,
                     userId : self.userId,
                     contents : self.contents,
-                    kind : self.selectItem,
-                    boardNo : self.boardNo
+                    kind : self.selectItem
                 };
                 $.ajax({
-                    url: "http://localhost:3009/board/update",
+                    url: "http://localhost:3009/board/insert",
                     dataType: "json",
                     type: "GET",
                     data: param,
                     success: function (data) {
-                        alert("수정되었습니다.")
+                        alert("저장되었습니다.")
                         self.fnBack();
                     }
                 });
             },
             fnBack : function(){
                 location.href="Board-list.html";
-            },
-            fnBoardInfo: function () {
-                let self = this;
-                // jQuery의 Ajax 함수를 사용하여 서버와 통신
-                $.ajax({
-                    url: "http://localhost:3009/board/view",
-                    dataType: "json",
-                    type: "GET",
-                    data: {boardNo : self.boardNo},
-                    success: function (data) {
-                        // Ajax 통신 성공 시 실행되는 콜백 함수
-                        console.log(data[0]);
-                        self.title = data[0].TITLE;
-                        self.userId = data[0].USERID;
-                        self.contents = data[0].CONTENTS;
-                        self.selectItem =data[0].KIND;
-                        
-                    }
-                });
             }
+
         }, // methods
         mounted() {
             // 처음 시작할 때 실행되는 부분
-            const queryParams = new URLSearchParams(window.location.search)
-            this.boardNo = queryParams.get('boardNo') || '';
-            this.fnBoardInfo();
+            let self = this;
+            self.userId = sessionStorage.getItem("sessionId");
         }
     });
 

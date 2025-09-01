@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user-info</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px 20px;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <h2>유저 정보</h2>
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <td>{{info.USERID}}</td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <td>{{info.NICKNAME}}</td>
+                </tr>
+                <th>권한</th>
+                <td>
+                    <span v-if="info.STATUS == 'A'">관리자</span>
+                    <span v-else-if="info.STATUS == 'S'">판매자</span>
+                    <span v-else-if="info.STATUS == 'C'">고객</span>
+                    <span v-else>알 수 없음</span>
+                </td>
+                <tr>
+                    <th>연락처</th>
+                    <td>{{info.PHONE}}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button @click="fnClose">닫기</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                userId : "",
+                info : {}
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+            fnUserInfo: function () {
+                let self = this;
+                // jQuery의 Ajax 함수를 사용하여 서버와 통신
+                $.ajax({
+                    url: "http://localhost:3009/user/info",
+                    dataType: "json",
+                    type: "GET",
+                    data: {userId : self.userId},
+                    success: function (data) {
+                        self.info = data[0];
+                    }
+                    
+                });
+            },
+            fnClose : function(){
+                window.close();
+            }
+        }, // methods
+        mounted() {
+            const queryParams = new URLSearchParams(window.location.search)
+            this.userId = queryParams.get('userId') || '';
+            this.fnUserInfo();
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>

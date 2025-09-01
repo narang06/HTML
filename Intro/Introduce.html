@@ -7,33 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="profile-header">
-        <img src="/Media/cat.jpg" alt="프로필 이미지" class="profile-img">
+    <header class="profile-header"> <!-- 머리말 부분 -->
+        <div class="image-container">
+            <img src="../Media/cat.jpg" id="main-profile-image" class="profile-img">
+            <div class="hover-image">
+                <img src="../Media/java.jpg" class="sub-profile-img" onclick="fnChange(this)">
+                <img src="../Media/java2.jpg" class="sub-profile-img" onclick="fnChange(this)">
+                <img src="../Media/java3.jpg" class="sub-profile-img" onclick="fnChange(this)">
+            </div>
+        </div>  
         <h1>이민형</h1>
-        현재 시간<p id="currentTime" class="currentTime"></p>
+        <p class="currentTime">현재 시간:</p>
     </header>
     
-    <main class="main-content">
-        <section class="about-me">
+    <main class="main-content"> <!-- 메인 부분 -->
+        <section class="about-me"> 
             <h2>자기소개</h2>
             <p>안녕하세요, 이민형입니다. 웹 개발에 관심이 많으며 HTML, CSS, JavaScript를 활용한 다양한 프로젝트를 경험했습니다.</p>
         </section>
 
-        <section class="skills">
+        <section class="skills"> 
             <h2>보유 기술</h2>
             <ul>
                 <li><strong>프로그래밍 언어:</strong> HTML, CSS, JavaScript</li>
                 <li><strong>프레임워크:</strong> </li>
-                <li><strong>데이터베이스:</strong>Oracle </li>
+                <li><strong>데이터베이스:</strong>Oracle</li>
             </ul>
         </section>
-
         <section class="contact">
             <h2>연락처</h2>
             <p>
                 이메일: <a href="mailto:sinso5281532@gmail.com">sinso5281532@gmail.com</a>
                 <br>
-                GitHub: <a href=https://github.com/narang06 target="_blank">github.com/narang06</a>
+                GitHub: <a href="https://github.com/narang06">github.com/narang06</a>
             </p>
         </section>
     </main>
@@ -41,15 +47,23 @@
     <footer class="site-footer">
         <p>&copy; 2025 이민형. All rights reserved.</p>
     </footer>
-</body>
+    </body>
 </html>
-<script>
-    setInterval(() => {
-        let datetime = new Date(); 
-        let obj = document.querySelector('#currentTime');
-        let time = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-        obj.innerHTML = time;
-    }, 1000);
+    <script>
+         // 현재 시간을 1초마다 업데이트하는 기능
+        setInterval(() => {
+            let datetime = new Date();
+            let time = datetime.getHours().toString().padStart(2, '0') + ':' + 
+                       datetime.getMinutes().toString().padStart(2, '0') + ':' + 
+                       datetime.getSeconds().toString().padStart(2, '0');
+            let obj = document.querySelector('.currentTime');
+            obj.innerHTML = '현재 시간: ' + time;
+        }, 1000);
+        function fnChange(clickedImg) {
+            let mainImg = document.querySelector("#main-profile-image");
+            let temp = mainImg.src;
+            mainImg.src = clickedImg.src;
+            clickedImg.src = temp;
+        }
 
-   
-</script>
+    </script>

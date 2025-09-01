@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="container">
+            <div>
+                <label>아이디: <input type="text" v-model="userId"></label>
+            </div>
+            <div>
+                <label>비밀번호: <input type="password" v-model="pwd"></label>
+            </div>
+        </div>
+        <div>
+            <button @click="fnLogin">로그인</button>
+            <button>회원가입</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // Vue.js 애플리케이션 생성
+    const app = Vue.createApp({
+        data() {
+            // Vue 인스턴스가 사용할 데이터(변수)를 정의하는 부분
+            return {
+                // 변수 - (key : value)
+                userId : "",
+                pwd : ""
+            };
+        },
+        methods: {
+            // Vue 인스턴스가 사용할 함수(메소드)를 정의하는 부분
+            // 함수(메소드) - (key : function())
+            fnLogin: function () {
+                let self = this;
+                let param = {
+                    userId : self.userId,
+                    pwd : self.pwd
+                };
+                $.ajax({
+                    url: "http://localhost:3009/login",
+                    dataType: "json",
+                    type: "GET",
+                    data: param,
+                    success: function (data) {
+                        console.log(data);
+                        if(data == "") { // 로그인 실패
+                            alert("로그인 정보를 다시 확인해주세요.")
+                        } else { // 로그인 성공
+                            alert(data[0].NAME +"님 로그인 되었습니다.") 
+                            sessionStorage.setItem("sessionId", data[0].USERID);
+                            sessionStorage.setItem("sessionStatus", data[0].STATUS);
+                            location.href="board-list.html";
+                        
+                        }
+                    }
+                    
+                });
+            }
+           
+        }, // methods
+        mounted() {
+            // Vue 인스턴스가 DOM에 마운트(부착)된 후 처음 실행되는 부분
+            // 처음 시작할 때 실행되는 부분
+        }
+    });
+    // Vue 애플리케이션을 HTML의 id="app" 요소에 마운트
+    app.mount('#app');
+</script>
