@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* 프로필 헤더 스타일 */
 .profile-header {
     background-color: #34495e;
@@ -87,34 +91,17 @@
 /* 메인 콘텐츠와 사이드 콘텐츠를 담는 래퍼 */
 .contents-change {
     display: flex; 
-    width: 200%; 
+    width: 400%; 
     transition: transform 0.5s ease-in-out; /* 부드러운 전환 효과 */
 }
 
-.main-content {
+.main-content, .side-content1, .side-content2, .side-content3 {
     flex-shrink: 0;
-    width: 50%; /* 컨테이너 너비의 절반 */
+    width: 25%; 
     padding: 2em;
-}
-
-
-.side-content {
-    flex-shrink: 0;
-    width: 50%; /* 컨테이너 너비의 절반 */
+    /* height: 600px; */
+    overflow-y: auto;
     background-color: white;
-    padding: 2em;
-}
-
-.draggable-handle {
-    width: 20px;
-    height: 100%;
-    position: absolute;
-    right: 50%; 
-    top: 0;
-    cursor: pointer; /* 마우스 커서를 변경하여 드래그 가능함을 표시 */
-    background-color: #34495e;
-    opacity: 0.2; 
-    transform: translateX(50%); 
 }
 
 /* 섹션 제목 스타일 */

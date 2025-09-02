@@ -46,9 +46,17 @@
                 </section>
             </main>
             <div class="draggable-handle"></div>
-            <aside class="side-content">
+            <aside class="side-content1">
                 <h3>갤러리</h3>
                 <p>갤~러~리</p>
+            </aside>
+            <aside class="side-content2">
+                <h3>기술 스택</h3>
+                <p></p>
+            </aside>
+            <aside class="side-content3">
+                <h3>활동 및 수상 경력</h3>
+                <p></p>
             </aside>
         </div>    
     </div>
@@ -77,46 +85,31 @@
         obj.innerHTML = '현재 시간: ' + time;
     }, 1000);
 
-    // 드래그하여 화면 전환 기능
-    const handle = document.querySelector('.draggable-handle');
     const wrapper = document.querySelector('.contents-change');
     const container = document.querySelector('.main-container');
 
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    let distance = 0;
-    const transitionThreshold = 100; // 전환을 위한 드래그 거리 (px)
-
-    handle.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.clientX;
-        wrapper.style.transition = 'none'; // 드래그 중 애니메이션 끔
-        document.body.style.userSelect = 'none'; // 텍스트 선택 방지
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-
-        currentX = e.clientX;
-        distance = startX - currentX;
-
-        // 드래그 거리에 따라 래퍼를 이동
-        wrapper.style.transform = `translateX(-${distance}px)`;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        wrapper.style.transition = 'transform 0.5s ease-in-out'; // 애니메이션 다시 켬
-
-        if (distance > transitionThreshold) {
-            // 충분히 드래그했으면 사이드 콘텐츠로 전환
-            wrapper.style.transform = `translateX(-50%)`;
-        } else {
-            // 드래그가 부족했으면 원래 위치로 되돌림
-            wrapper.style.transform = `translateX(0)`;
+    let currentPage = 0;
+    const totalPages = 4;
+    
+    // body 전체에 클릭 이벤트 리스너를 추가합니다.
+    document.body.addEventListener('click', (e) => {
+        // ⭐️ 변경된 부분: 헤더, 푸터, 메인 컨테이너 클릭 시 함수 종료
+        if (e.target.closest('.main-container') || e.target.closest('.profile-header') || e.target.closest('.site-footer')) {
+            return; // 클릭된 영역이 메인 컨테이너, 헤더, 푸터 중 하나라면 함수를 여기서 종료합니다.
         }
-        document.body.style.userSelect = ''; // 텍스트 선택 허용
-        distance = 0; // 거리 초기화
+
+        const windowWidth = window.innerWidth;
+        const clickPositionX = e.clientX;
+
+        // 위에서 return되지 않았다면, 즉 제외 영역 바깥을 클릭했다면 페이지를 넘깁니다.
+        if (clickPositionX > windowWidth / 2) {
+            currentPage = (currentPage + 1) % totalPages;
+        } else {
+            currentPage = (currentPage - 1 + totalPages) % totalPages;
+        }
+
+        const finalTransformValue = - (currentPage * (100 / totalPages));
+        wrapper.style.transform = `translateX(${finalTransformValue}%)`;
     });
 </script>
+
