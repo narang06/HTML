@@ -24,7 +24,7 @@
     margin-bottom: 1em;
 }
 
-#main-profile-image:hover { /*호버 했을태 이미지 조금 크게*/
+#main-profile-image:hover { 
     width: 200px;
     border-radius: 50%;
     border: 3px solid white;
@@ -32,17 +32,17 @@
 }
 
 .hover-image {
-    display: none; /
+    display: none; 
     position: absolute; 
     top: 100%; 
     left: 50%; 
     margin-top: 10px; 
-    flex-direction: row; /* 가로로 정렬 */
+    flex-direction: row;
     gap: 10px; 
 }
 
 .image-container:hover .hover-image {
-    display: flex; /* 숨겨진 이미지를 나타냄 */
+    display: flex;
 }
 
 /* 서브 프로필 이미지 스타일 */
@@ -84,7 +84,7 @@
     background-color: white;
     box-shadow: 0 0 10px black;
     position: relative;
-    overflow: hidden; /* 핵심! 넘치는 콘텐츠를 숨겨서 화면 전환 효과를 줌 */
+    overflow: hidden; 
     height: 600px; 
 }
 
@@ -92,7 +92,7 @@
 .contents-change {
     display: flex; 
     width: 400%; 
-    transition: transform 0.5s ease-in-out; /* 부드러운 전환 효과 */
+    transition: transform 0.5s ease-in-out; 
 }
 
 .main-content, .side-content1, .side-content2, .side-content3 {

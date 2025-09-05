@@ -61,7 +61,7 @@
         </div>    
     </div>
 
-    <footer class="site-footer">
+    <footer class="site-footer"> <!--푸터 부분-->
         <p>&copy; 2025 이민형. All rights reserved.</p>
     </footer>
     </body>
@@ -91,17 +91,17 @@
     let currentPage = 0;
     const totalPages = 4;
     
-    // body 전체에 클릭 이벤트 리스너를 추가합니다.
+    // 화면 클릭시 컨탠츠 전환 기능
     document.body.addEventListener('click', (e) => {
-        // ⭐️ 변경된 부분: 헤더, 푸터, 메인 컨테이너 클릭 시 함수 종료
+        
         if (e.target.closest('.main-container') || e.target.closest('.profile-header') || e.target.closest('.site-footer')) {
-            return; // 클릭된 영역이 메인 컨테이너, 헤더, 푸터 중 하나라면 함수를 여기서 종료합니다.
+            return; 
         }
 
         const windowWidth = window.innerWidth;
         const clickPositionX = e.clientX;
 
-        // 위에서 return되지 않았다면, 즉 제외 영역 바깥을 클릭했다면 페이지를 넘깁니다.
+       
         if (clickPositionX > windowWidth / 2) {
             currentPage = (currentPage + 1) % totalPages;
         } else {
