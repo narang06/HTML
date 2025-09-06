@@ -2,50 +2,100 @@
     box-sizing: border-box;
 }
 
-/* 프로필 헤더 스타일 */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --header-bg: #34495e;
+    --header-text: #ffffff;
+    --footer-bg: cadetblue;
+    --footer-text: #ffffff;
+    --card-bg: #f9f9f9;
+    --accent: cyan;
+}
+
+/* 다크 모드 */
+.dark-mode {
+    --bg: #1e1e1e;
+    --text: #e0e0e0;
+    --header-bg: #222831;
+    --header-text: #eeeeee;
+    --footer-bg: #393e46;
+    --footer-text: #eeeeee;
+    --card-bg: #2c2c2c;
+    --accent: #00adb5;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* 프로필 헤더 */
 .profile-header {
-    background-color: #34495e;
-    color: white;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     padding: 2em 0;
     text-align: center;
     width: 100%;
 }
 
+/* 다크 모드 토글 버튼 */
+#darkModeToggle {
+    position: fixed;  
+    top: 15px;
+    left: 15px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--accent);
+    color: #000;
+    font-weight: bold;
+    z-index: 1000; 
+    transition: background-color 0.3s;
+}
+
+#darkModeToggle:hover {
+    opacity: 0.85;
+}
+
+/* 프로필 이미지 */
 .image-container {
     position: relative;
     display: inline-block;
 }
 
-/* 메인 프로필 이미지 스타일 */
 #main-profile-image {
     width: 150px;
     border-radius: 50%;
     border: 3px solid white;
     margin-bottom: 1em;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-#main-profile-image:hover { 
-    width: 200px;
-    border-radius: 50%;
-    border: 3px solid white;
-    margin-bottom: 1em;
-}
-
+/* 서브 이미지 토글 상태 */
 .hover-image {
-    display: none; 
-    position: absolute; 
-    top: 100%; 
-    left: 50%; 
-    margin-top: 10px; 
+    display: flex;           
     flex-direction: row;
-    gap: 10px; 
+    gap: 10px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;          
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 100;
 }
 
-.image-container:hover .hover-image {
-    display: flex;
+.hover-image.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* 서브 프로필 이미지 스타일 */
 .sub-profile-img {
     width: 80px;
     height: 80px;
@@ -56,42 +106,33 @@
 }
 
 .sub-profile-img:hover {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s; 
+    border-color: var(--accent);
+    transform: scale(1.2);
 }
 
-/* 서브 이미지에 호버 시 효과 */
-.sub-profile-img:hover {
-    border-color: #3498db;
-    transform: scale(1.1);
-}
-
-
-/* 현재 시간 표시 스타일 */
+/* 현재 시간 표시 */
 .currentTime {
     font-size: 1.2em;
     margin-top: 0.5em;
 }
 
+/* 메인 컨텐츠 박스 */
 .main-container {
+    position: relative;
     width: 100%;
     max-width: 1000px;
     margin: 2em auto;
-    background-color: white;
-    box-shadow: 0 0 10px black;
-    position: relative;
-    overflow: hidden; 
-    height: 600px; 
+    height: 600px;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-/* 메인 콘텐츠와 사이드 콘텐츠를 담는 래퍼 */
+/* 컨텐츠 슬라이더 */
 .contents-change {
     display: flex; 
     width: 400%; 
+    height: 100%;
     transition: transform 0.5s ease-in-out; 
 }
 
@@ -99,24 +140,22 @@
     flex-shrink: 0;
     width: 25%; 
     padding: 2em;
-    /* height: 600px; */
     overflow-y: auto;
-    background-color: white;
+    background-color: var(--card-bg);
 }
 
-/* 섹션 제목 스타일 */
+/* 섹션 제목 */
 section {
     margin-bottom: 2em;
 }
 
 h2 {
-    width: 900px;
-    border-bottom: 2px solid cyan;
+    border-bottom: 2px solid var(--accent);
     padding-bottom: 0.5em;
     margin-bottom: 1em;
 }
 
-/* 스킬 목록 스타일 */
+/* 스킬 목록 */
 .skills ul {
     list-style-type: none;
     padding: 0;
@@ -124,17 +163,22 @@ h2 {
 
 .skills li {
     background-color: aliceblue;
+    color: #000; 
     margin-bottom: 0.5em;
     padding: 0.8em;
     border-radius: 5px;
-    width: 800px;
 }
 
-/* 푸터 스타일 */
+.dark-mode .skills li {
+    background-color: #2a2a2a; 
+    color: #fff; 
+}
+
+/* 푸터 */
 .site-footer {
     text-align: center;
     padding: 1em 0;
-    background-color: cadetblue;
-    color: white;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     width: 100%;
 }

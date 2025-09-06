@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="profile-header"> <!-- 머리말 부분 -->
+    <button id="darkModeToggle">🌙 다크 모드</button>
+
+    <header class="profile-header">
         <div class="image-container">
             <img src="../Media/cat.jpg" id="main-profile-image" class="profile-img">
             <div class="hover-image">
@@ -15,101 +17,157 @@
                 <img src="../Media/java2.jpg" class="sub-profile-img" onclick="fnChange(this)">
                 <img src="../Media/java3.jpg" class="sub-profile-img" onclick="fnChange(this)">
             </div>
-        </div>  
+        </div>
         <h1>이민형</h1>
         <p class="currentTime">현재 시간:</p>
     </header>
-    
+
     <div class="main-container">
         <div class="contents-change">
-            <main class="main-content"> <!-- 메인 부분 -->
-                <section class="about-me"> 
+            <main class="main-content">
+                <section class="about-me">
                     <h2>자기소개</h2>
                     <p>안녕하세요, 이민형입니다. 웹 개발에 관심이 많으며 HTML, CSS, JavaScript를 활용한 다양한 프로젝트를 경험했습니다.</p>
                 </section>
-    
-                <section class="skills"> 
+
+                <section class="skills">
                     <h2>보유 기술</h2>
                     <ul>
                         <li><strong>프로그래밍 언어:</strong> HTML, CSS, JavaScript</li>
-                        <li><strong>프레임워크:</strong> </li>
-                        <li><strong>데이터베이스:</strong>Oracle</li>
+                        <li><strong>프레임워크:</strong></li>
+                        <li><strong>데이터베이스:</strong> Oracle</li>
                     </ul>
                 </section>
+
                 <section class="contact">
                     <h2>연락처</h2>
                     <p>
-                        이메일: <a href="mailto:sinso5281532@gmail.com">sinso5281532@gmail.com</a>
-                        <br>
+                        이메일: <a href="mailto:sinso5281532@gmail.com">sinso5281532@gmail.com</a><br>
                         GitHub: <a href="https://github.com/narang06">github.com/narang06</a>
                     </p>
                 </section>
             </main>
-            <div class="draggable-handle"></div>
+
             <aside class="side-content1">
-                <h3>갤러리</h3>
-                <p>갤~러~리</p>
+                <h3>HTML 갤러리</h3>
+                <div class="gallery"></div>
+                <pre><code id="code-display" style="background:#f0f0f0; padding:10px; display:block; overflow:auto;"></code></pre>
             </aside>
+
             <aside class="side-content2">
                 <h3>기술 스택</h3>
                 <p></p>
             </aside>
+
             <aside class="side-content3">
                 <h3>활동 및 수상 경력</h3>
                 <p></p>
             </aside>
-        </div>    
+        </div>
     </div>
 
-    <footer class="site-footer"> <!--푸터 부분-->
+    <footer class="site-footer">
         <p>&copy; 2025 이민형. All rights reserved.</p>
     </footer>
-    </body>
+</body>
 </html>
 <script>
-    // 메인 이미지 교체 기능
-    function fnChange(clickedImg) { 
+    // 메인 이미지 교체
+    function fnChange(clickedImg) {
         let mainImg = document.querySelector("#main-profile-image");
         let temp = mainImg.src;
         mainImg.src = clickedImg.src;
         clickedImg.src = temp;
     }
 
-    // 현재 시간 업데이트 기능
+    // 현재 시간
     setInterval(() => {
-        let datetime = new Date();
-        let time = datetime.getHours().toString().padStart(2, '0') + ':' +
-        datetime.getMinutes().toString().padStart(2, '0') + ':' +
-        datetime.getSeconds().toString().padStart(2, '0');
-        let obj = document.querySelector('.currentTime');
-        obj.innerHTML = '현재 시간: ' + time;
+        let now = new Date();
+        let time = now.getHours().toString().padStart(2,'0') + ':' +
+            now.getMinutes().toString().padStart(2,'0') + ':' +
+            now.getSeconds().toString().padStart(2,'0');
+            document.querySelector('.currentTime').textContent = '현재 시간: ' + time;
     }, 1000);
 
-    const wrapper = document.querySelector('.contents-change');
-    const container = document.querySelector('.main-container');
-
+    // 컨텐츠 바깥 클릭 시 페이지 전환
+    let wrapper = document.querySelector('.contents-change');
+    let totalPages = 4;
     let currentPage = 0;
-    const totalPages = 4;
-    
-    // 화면 클릭시 컨탠츠 전환 기능
+
     document.body.addEventListener('click', (e) => {
-        
-        if (e.target.closest('.main-container') || e.target.closest('.profile-header') || e.target.closest('.site-footer')) {
-            return; 
-        }
+        // 다크모드 버튼 클릭 제외
+        if (e.target.closest('#darkModeToggle')) return;
+        if (e.target.closest('.main-container') || e.target.closest('.profile-header') || e.target.closest('.site-footer')) return;
 
-        const windowWidth = window.innerWidth;
-        const clickPositionX = e.clientX;
+        let windowWidth = window.innerWidth;
+        let clickX = e.clientX;
 
-       
-        if (clickPositionX > windowWidth / 2) {
+        if (clickX > windowWidth / 2) {
             currentPage = (currentPage + 1) % totalPages;
         } else {
             currentPage = (currentPage - 1 + totalPages) % totalPages;
         }
 
-        const finalTransformValue = - (currentPage * (100 / totalPages));
-        wrapper.style.transform = `translateX(${finalTransformValue}%)`;
+        wrapper.style.transform = `translateX(-${currentPage*25}%)`;
     });
+
+    // 서브 이미지 토글
+    let mainImg = document.getElementById('main-profile-image');
+    let hoverImages = document.querySelector('.hover-image');
+
+    mainImg.addEventListener('click', (e) => {
+        hoverImages.classList.toggle('show');
+        e.stopPropagation();
+    });
+
+    document.body.addEventListener('click', (e) => {
+        if (!e.target.closest('#main-profile-image') && !e.target.closest('.hover-image')) {
+             hoverImages.classList.remove('show');
+        }
+    });
+
+    // 다크 모드
+    let toggleBtn = document.getElementById('darkModeToggle');
+    toggleBtn.addEventListener('click', (e) => {
+         document.body.classList.toggle('dark-mode');
+        toggleBtn.textContent = document.body.classList.contains('dark-mode') ? "☀️ 라이트 모드" : "🌙 다크 모드";
+        e.stopPropagation();
+    });
+
+        
+    let gallery = document.querySelector('.gallery');
+    let display = document.getElementById('code-display');
+
+    function fetchFiles(path='') {
+        let url = `https://api.github.com/repos/narang06/HTML/contents/${path}`;
+  
+        fetch(url)
+            .then(res => res.json())
+            .then(items => {
+                items.forEach(item => {
+                    if(item.type === 'file' && /\.(html|css|js)$/.test(item.name)) {
+                        let btn = document.createElement('button');
+                        btn.textContent = path + item.name;
+                        btn.style.margin = '5px';
+                        btn.style.padding = '5px 10px';
+                        btn.style.cursor = 'pointer';
+                        btn.addEventListener('click', () => {
+                            fetch(item.download_url)
+                                .then(res => res.text())
+                                .then(code => {
+                                    display.textContent = code;
+                                });
+                        });
+                        gallery.appendChild(btn);
+                    } else if(item.type === 'dir') {
+                    fetchFiles(item.path + '/'); 
+                    }
+                });
+            })
+        .catch(err => console.error('GitHub API 호출 실패:', err));
+    }  
+    fetchFiles();     
 </script>
+
+
 
