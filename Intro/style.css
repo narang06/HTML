@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 
 :root {
     --bg: #ffffff;
@@ -10,7 +13,8 @@
     --footer-bg: cadetblue;
     --footer-text: #ffffff;
     --card-bg: #f9f9f9;
-    --accent: cyan;
+    --accent: #E0FFFF; 
+    --border: #ccc;
 }
 
 /* 다크 모드 */
@@ -23,22 +27,25 @@
     --footer-text: #eeeeee;
     --card-bg: #2c2c2c;
     --accent: #00adb5;
+    --border: #555;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    margin: 0;
     font-family: Arial, sans-serif;
+    line-height: 1.5;  
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
 }
 
-/* 프로필 헤더 */
+/* 헤더 */
 .profile-header {
     background-color: var(--header-bg);
     color: var(--header-text);
     padding: 2em 0;
     text-align: center;
-    width: 100%;
 }
 
 /* 다크 모드 토글 버튼 */
@@ -54,9 +61,8 @@ body {
     color: #000;
     font-weight: bold;
     z-index: 1000; 
-    transition: background-color 0.3s;
+    transition: opacity 0.3s;
 }
-
 #darkModeToggle:hover {
     opacity: 0.85;
 }
@@ -66,20 +72,21 @@ body {
     position: relative;
     display: inline-block;
 }
-
 #main-profile-image {
     width: 150px;
     border-radius: 50%;
-    border: 3px solid white;
+    border: 3px solid #fff;
     margin-bottom: 1em;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     cursor: pointer;
 }
+#main-profile-image:hover {
+    transform: scale(1.1);
+}
 
-/* 서브 이미지 토글 상태 */
+/* 서브 이미지 토글 */
 .hover-image {
     display: flex;           
-    flex-direction: row;
     gap: 10px;
     position: absolute;
     top: 100%;
@@ -90,42 +97,40 @@ body {
     transition: opacity 0.3s ease;
     z-index: 100;
 }
-
 .hover-image.show {
     opacity: 1;
     visibility: visible;
 }
-
 .sub-profile-img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 2px solid #ccc;
+    border: 2px solid var(--border);
     cursor: pointer;
     transition: transform 0.2s, border-color 0.2s; 
 }
-
 .sub-profile-img:hover {
     border-color: var(--accent);
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
-/* 현재 시간 표시 */
+/* 현재 시간 */
 .currentTime {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-top: 0.5em;
 }
 
-/* 메인 컨텐츠 박스 */
+/* 메인 컨테이너 */
 .main-container {
     position: relative;
-    width: 100%;
     max-width: 1000px;
     margin: 2em auto;
     height: 600px;
     overflow: hidden;
     background-color: var(--card-bg);
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    flex-grow: 1;
 }
 
 /* 컨텐츠 슬라이더 */
@@ -135,8 +140,10 @@ body {
     height: 100%;
     transition: transform 0.5s ease-in-out; 
 }
-
-.main-content, .side-content1, .side-content2, .side-content3 {
+.main-content,
+.side-content1,
+.side-content2,
+.side-content3 {
     flex-shrink: 0;
     width: 25%; 
     padding: 2em;
@@ -144,34 +151,109 @@ body {
     background-color: var(--card-bg);
 }
 
-/* 섹션 제목 */
-section {
-    margin-bottom: 2em;
-}
-
-h2 {
+/* 제목 스타일 */
+h2, h3 {
     border-bottom: 2px solid var(--accent);
     padding-bottom: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em; 
+}
+
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3 {
+    border-color: #555; /* 어두운 회색으로 변경하여 가독성을 높였습니다. */
+}
+
+/* 섹션 간 간격 조절 */
+.main-content section {
+    margin-bottom: 2em; 
+}
+
+.contact {
+    margin-top: 3em; 
+    padding-top: 2em; /
+}
+
+
+/* 갤러리 트리 */
+#gallery ul {
+    list-style: none;
+    padding-left: 1em;
+    margin-top: 1em; 
+}
+#gallery li {
+    margin: 0.5em 0; 
 }
 
 /* 스킬 목록 */
 .skills ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin-top: 1em; 
 }
-
 .skills li {
-    background-color: aliceblue;
-    color: #000; 
-    margin-bottom: 0.5em;
-    padding: 0.8em;
+    background-color: var(--accent);
+    color: #000;
+    margin-bottom: 0.8em; 
+    padding: 0.8em 1.2em; 
     border-radius: 5px;
+    font-weight: bold;
 }
 
-.dark-mode .skills li {
-    background-color: #2a2a2a; 
-    color: #fff; 
+/* 문단 스타일 추가 */
+p {
+    margin-bottom: 1em; 
+    line-height: 1.8; 
+}
+
+#gallery .folder {
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--accent); 
+}
+
+body:not(.dark-mode) #gallery .folder {
+  color: black;
+}
+#gallery .folder:hover {
+  text-decoration: underline;
+}
+
+/* 탭 버튼 */
+.tabs {
+  display: flex;
+  gap: 5px;
+  margin: 1em 0;
+}
+.tab-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.tab-btn.active {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* 코드뷰 */
+#code {
+  background: #111;
+  color: #eee;
+  padding: 1em;
+  border-radius: 6px;
+  max-height: 400px;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 0.9em;
 }
 
 /* 푸터 */
@@ -181,4 +263,5 @@ h2 {
     background-color: var(--footer-bg);
     color: var(--footer-text);
     width: 100%;
+    margin-top: 2em; 
 }
