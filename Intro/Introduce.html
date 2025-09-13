@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자기소개 - 이민형</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
     <button id="darkModeToggle">🌙 다크 모드</button>
@@ -34,7 +35,7 @@
                     <h2>보유 기술</h2>
                     <ul>
                         <li><strong>프로그래밍 언어:</strong> HTML, CSS, JavaScript</li>
-                        <li><strong>프레임워크:</strong></li>
+                        <li><strong>프레임워크: Vue.js</strong></li>
                         <li><strong>데이터베이스:</strong> Oracle</li>
                     </ul>
                 </section>
@@ -68,7 +69,9 @@
 
             <aside class="side-content2">
                 <h3>기술 스택</h3>
-                <p>추후 기능 구현 예정</p>
+                <div id="languages_chart" style="width: 100%; height: 250px;"></div>
+                <div id="frameworks_chart" style="width: 100%; height: 250px;"></div>
+                <div id="databases_chart" style="width: 100%; height: 250px;"></div>
             </aside>
 
             <aside class="side-content3">
@@ -100,6 +103,7 @@
             now.getSeconds().toString().padStart(2,'0');
         document.querySelector('.currentTime').textContent = '현재 시간: ' + time;
     }, 1000);
+
 
     // 컨텐츠 바깥 클릭 시 페이지 전환
     let wrapper = document.querySelector('.contents-change');
@@ -203,8 +207,111 @@
         showTab("code");
     }
 
+    // Google Charts - 기술 스택
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+      drawLanguagesChart();
+      drawFrameworksChart();
+      drawDatabasesChart();
+    }
+    
+    // 프로그래밍 언어 차트
+    function drawLanguagesChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['프로그래밍 언어', '숙련도',{ role: 'style' }],
+            ['HTML', 65, '#3366cc'],
+            ['CSS', 60, '#dc3912'],
+            ['JavaScript', 65, '#ff9900'],
+            ['Java', 65, '#5382a1']
+        ]);
+
+        var options = {
+            title: '프로그래밍 언어 숙련도',
+            legend: { position: 'none' },
+            bar: { groupWidth: "85%" },
+            hAxis: {
+                viewWindow: {
+                    min: 0,
+                    max: 100
+                },
+                title: '숙련도 (%)'
+            },
+            vAxis: {
+                title: '프로그래밍 언어'
+            }
+        };
+
+
+        var chart = new google.visualization.BarChart(document.getElementById('languages_chart'));
+        chart.draw(data, options);
+    }
+    
+    // 프레임워크 차트
+    function drawFrameworksChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['프레임워크', '숙련도',{ role: 'style' }],
+            ['React', 0,'#3366cc'],
+            ['Vue.js', 65,'#dc3912'],
+            ['Angular', 0,'#ff9900'],
+            
+        ]);
+
+        var options = {
+            title: '프레임워크 숙련도',
+            legend: { position: 'none' },
+            bar: { groupWidth: "85%" },
+            hAxis: {
+                viewWindow: {
+                    min: 0,
+                    max: 100
+                },
+                title: '숙련도 (%)'
+            },
+            vAxis: {
+                title: '프레임워크'
+            }
+        };
+
+      
+
+        var chart = new google.visualization.BarChart(document.getElementById('frameworks_chart'));
+        chart.draw(data, options);
+    }
+    
+    // 데이터베이스 차트
+    function drawDatabasesChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['데이터베이스', '숙련도',{ role: 'style' }],
+            ['Oracle', 70,'#3366cc'],
+            ['기타 데이터베이스', 0,'#dc3912'],
+        ]);
+
+        var options = {
+            title: '데이터베이스 숙련도',
+            legend: { position: 'none' },
+            bar: { groupWidth: "85%" },
+            hAxis: {
+                viewWindow: {
+                    min: 0,
+                    max: 100
+                },
+                title: '숙련도 (%)'
+            },
+            vAxis: {
+                title: '데이터베이스'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('databases_chart'));
+        chart.draw(data, options);
+    };
+
+        
+       
+
     // 시작하자마자 실행
-    renderFolder("", document.getElementById("gallery"));   
+    renderFolder("", document.getElementById("gallery")); 
 </script>
 
 
